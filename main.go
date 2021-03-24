@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"os/exec"
+	"strings"
 	"time"
 )
 
@@ -29,5 +31,11 @@ func main() {
 	}
 
 	// ping INCMS Host
+	out, _ := exec.Command("ping", "8.8.8.8", "-c 5", "-i 3", "-w 10").Output()
+	if strings.Contains(string(out), "Destination Host Unreachable") {
+		fmt.Println("TANGO DOWN")
+	} else {
+		fmt.Println("IT'S ALIVEEE")
+	}
 
 }
