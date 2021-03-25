@@ -10,6 +10,7 @@ import (
 )
 
 func main() {
+
 	//display hostname
 	name, err := os.Hostname()
 	if err != nil { //error checking
@@ -31,7 +32,7 @@ func main() {
 	}
 
 	// ping INCMS Host
-	out, _ := exec.Command("ping", "8.8.8.8", "-c 5", "-i 3", "-w 10").Output()
+	out, _ := exec.Command("ping", "https://google.com", "-c 5", "-i 3", "-w 10").Output()
 	if strings.Contains(string(out), "Destination Host Unreachable") {
 		fmt.Println("TANGO DOWN")
 	} else {
