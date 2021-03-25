@@ -31,7 +31,7 @@ func main() {
 		fmt.Printf("%d %v\n", i, addr)
 	}
 
-	// ping INCMS Host
+	// ping server Host
 	out, _ := exec.Command("ping", "https://google.com", "-c 5", "-i 3", "-w 10").Output()
 	if strings.Contains(string(out), "Destination Host Unreachable") {
 		fmt.Println("TANGO DOWN")
