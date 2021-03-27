@@ -31,12 +31,18 @@ func main() {
 		fmt.Printf("%d %v\n", i, addr)
 	}
 
-	// ping server Host
-	out, _ := exec.Command("ping", "https://google.com", "-c 5", "-i 3", "-w 10").Output()
-	if strings.Contains(string(out), "Destination Host Unreachable") {
-		fmt.Println("TANGO DOWN")
-	} else {
-		fmt.Println("IT'S ALIVEEE")
+	// ping servers and resouces
+	resources := map[string]string{"google": "google.com", "twitter": "twitter.com", "yahoo": "yahoo.com"}
+
+	for _, value := range resources {
+		out, _ := exec.Command("ping", value, "-c 5", "-i 3", "-w 10").Output()
+		if strings.Contains(string(out), "Destination Host Unreachable") {
+			fmt.Printf("%v is down\n", resources)
+			break
+		} else {
+			fmt.Printf("%v is alive\n", resources)
+			break
+		}
 	}
 
 }
