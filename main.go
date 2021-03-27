@@ -46,4 +46,6 @@ func main() {
 			fmt.Printf(" its ALIVEEE\n")
 		}
 	}
+	// email report
+
 }
