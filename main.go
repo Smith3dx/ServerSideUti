@@ -35,14 +35,15 @@ func main() {
 	resources := map[string]string{"google": "google.com", "twitter": "twitter.com", "yahoo": "yahoo.com"}
 
 	for _, value := range resources {
-		out, _ := exec.Command("ping", value, "-c 5", "-i 3", "-w 10").Output()
+		out, err := exec.Command("ping", value, "-c 1").Output()
+		if err != nil {
+			fmt.Printf("error: %v\n", err)
+		}
+		fmt.Printf("out: %s\n", out)
 		if strings.Contains(string(out), "Destination Host Unreachable") {
-			fmt.Printf("%v is down\n", resources)
-			break
+			fmt.Println(" its  DOWN")
 		} else {
-			fmt.Printf("%v is alive\n", resources)
-			break
+			fmt.Printf(" its ALIVEEE\n")
 		}
 	}
-
 }
